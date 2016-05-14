@@ -1,0 +1,26 @@
+{
+  "name": "sweeper",
+  "version": "0.0.1",
+  "description": "Watches a queue and makes API calls",
+  "main": "app.js",
+  "dependencies": {
+    "aws-sdk": "^2.3.10",
+    "chalk": "^1.1.3",
+    "q": "^1.4.1",
+    "request": "^2.72.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nctiggy/sweeper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nctiggy/sweeper/issues"
+  },
+  "homepage": "https://github.com/nctiggy/sweeper#readme",
+  "author": "Craig J Smith & Dana Young",
+  "license": "BSD-2-Clause"
+}
