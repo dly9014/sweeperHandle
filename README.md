@@ -1,2 +1,2 @@
-# askForData
-Node front end microservice to ask Alexa to retrieve data
+# sweeperHandle
+Lambda front-end microservice requester of json via Sweeper
