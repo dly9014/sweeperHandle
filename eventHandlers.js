@@ -5,9 +5,11 @@
 
 var registerEventHandlers = function (eventHandlers) {
     eventHandlers.onSessionStarted = function (sessionStartedRequest, session) {
+		session.attributes.requestInFlight = false;
     };
 
     eventHandlers.onLaunch = function (launchRequest, session, response) {	
+		
 		handleWelcomeRequest(response);		
     };
 	

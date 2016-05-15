@@ -7,6 +7,16 @@ var	AlexaSkill = require('./AlexaSkill'),
 	//SQSHelper = require('./SQSHelper'),
 	speechText = '';
 
+// customer to gdun mapping:
+var CUSTOMERS = {
+    'starbucks': 831703157,
+    'nordstrom': 831703157,
+    'puget sound energy': 831703157,
+    'pse': 831703157,
+    'premera': 831703157,
+    'microsoft': 831703157
+};	
+	
 var registerIntentHandlers = function (intentHandlers) {
 	
     intentHandlers.HelloIntent = function (intent, session, response) {
@@ -285,7 +295,7 @@ function getFinalResponse(customerInfo, reqType, session, response) {
 	console.log('reqType.requestDataTypeParam = ' + reqType.requestDataTypeParam);
 	console.log('type of reqType.requestDataTypeParam = ' + typeof(reqType.requestDataTypeParam));
 	
-	getDataFromSweeper.getData(customerInfo.gdun, reqType.requestDataTypeParam, function (result) {
+	getDataFromSweeper.getData(customerInfo.gdun, reqType.requestDataTypeParam, session, function (result) {
 		
 		if (result.gotData == false) {
 			// we don't have the data yet, so ask the user for more time, their response will fire the OkToWaitIntent
@@ -363,20 +373,12 @@ function askSpeech(textToSay, repromptTextToSay, response) {
 	response.ask(speechOutput, repromptOutput);	
 };
 
-// customer to gdun mapping:
-var CUSTOMERS = {
-    'starbucks': 831703157,
-    'nordstrom': 831703157,
-    'puget sound energy': 831703157,
-    'pse': 831703157,
-    'premera': 831703157,
-    'microsoft': 831703157
-};
+
 
 function countSystems(intent, session, response) {
 	console.log('entering countSystems function');
 		
-	getDataFromSweeper.getData(session.attributes.customerInfo.gdun, session.attributes.dataType.requestDataTypeParam, function (result) {
+	getDataFromSweeper.getData(session.attributes.customerInfo.gdun, session.attributes.dataType.requestDataTypeParam, session, function (result) {
 		
 		if (result.gotData == false) {
 			// we don't have the data yet, so ask the user for more time, their response will fire the OkToWaitIntent
@@ -392,12 +394,12 @@ function countSystems(intent, session, response) {
 			console.log('completedSweeperJobs message receipt handle for this data = ' + JSON.stringify(session.attributes.MsgReceiptHandle));
 			
 			var system = intent.slots.System.value,
-				custData = result.dataPayload,
+				installBaseData = result.dataPayload,
 				productFamily = '';
 				
 			console.log('system = ' + system);
-			console.log('custData = ' + JSON.stringify(custData));
-			console.log('custData.rows.length = ' + custData.rows.length);
+			console.log('installBaseData = ' + JSON.stringify(installBaseData));
+			console.log('installBaseData.rows.length = ' + installBaseData.rows.length);
 				
 			switch ( system ) {
 				case 'Sims':
@@ -408,18 +410,7 @@ function countSystems(intent, session, response) {
 					break;
 			}		
 			
-			function getCount(productFamily) {
-				var count = 0;
-				for (var i = 0; i < custData.rows.length; i++) {
-					if (custData.rows[i].INSTANCE_PRODUCT_FAMILY == productFamily) {
-						count++;
-					}
-				}
-				console.log('system count = ' + count);
-				return count;
-			}
-
-			var numSystems = getCount(productFamily);  
+			var numSystems = getCount(productFamily, installBaseData);  
 			
 			speechText = 'There are ' + numSystems + ' ' + system + ' installed at ';
 			speechText += session.attributes.customerInfo.customerName + '. Would you like to hear some other customer information?';
@@ -430,12 +421,26 @@ function countSystems(intent, session, response) {
 			//			SQSHelper.deleteMessage(result.MsgReceiptHandle, function () {
 			//				console.log('message delete routine complete');
 			//			});	
+			
+			// reset requestInFlight so the next request will generate a message to Sweeper
+			session.attributes.requestInFlight = false;
 
 			// provide requested information to the user
-			askSpeech(speechText, repromptText, response);												
+			askSpeech(speechText, repromptText, response);
+			
 		};		
-	});		
-	
+	});	
+
+	function getCount(productFamily, installBaseData) {
+		var count = 0;
+		for (var i = 0; i < installBaseData.rows.length; i++) {
+			if (installBaseData.rows[i].INSTANCE_PRODUCT_FAMILY == productFamily) {
+				count++;
+			}
+		}
+		console.log('system count = ' + count);
+		return count;
+	}	
 };
 
 exports.register = registerIntentHandlers;

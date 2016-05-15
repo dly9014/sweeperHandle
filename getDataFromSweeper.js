@@ -22,26 +22,33 @@ var getDataFromSweeper = (function () {
 		
 		// use API call to send a message to the requestToSweeper queue asking for data, then monitor
 		// the completedSweeperJobs queue and get the message containing the JSON payload of requested data
-		getData: function (gdun, reqType, callback) {
+		getData: function (gdun, reqType, session, callback) {
+			
+			console.log('session.attributes.requestInFlight = ' + session.attributes.requestInFlight);
 			
 			var receiveMessage = Q.nbind( sqs.receiveMessage, sqs );
 			var deleteMessage = Q.nbind( sqs.deleteMessage, sqs );
 
-			// build the URL for the API call to ask for data
-			var url = buildApiUrl( gdun, reqType );
+			// if we have not yet a message to the requestToSweeper queue asking for data, do that:
+			if (session.attributes.requestInFlight == false) {
+				// build the URL for the API call to ask for data
+				var url = buildApiUrl( gdun, reqType );
 
-			// call Sweeper to go get the data and post it to completedSweeperJobs queue
-			var results = callSweeper( url, function(results) {
-				console.log( chalk.green('results = ' + results) );
-			});
+				// call Sweeper to go get the data and post it to completedSweeperJobs queue
+				var results = callSweeper( url, function(results) {
+					console.log( chalk.green('results = ' + results) );
+					session.attributes.requestInFlight = true;
+				});				
+			}
+
 
 			// now start looking for the message with the data
 			(function pollQueueForMessages() {
 
 				console.log( chalk.yellow( "Starting long-poll operation." ) );
 				receiveMessage({
-					WaitTimeSeconds: 1, // Enable long-polling
-					VisibilityTimeout: 1,
+					WaitTimeSeconds: 10, // Enable long-polling
+					VisibilityTimeout: 10,
 					MessageAttributeNames: ["All"]
 				})
 				.then(
