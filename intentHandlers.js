@@ -9,12 +9,21 @@ var	AlexaSkill = require('./AlexaSkill'),
 
 // customer to gdun mapping:
 var CUSTOMERS = {
-    'starbucks': 831703157,
-    'nordstrom': 831703157,
-    'puget sound energy': 831703157,
-    'pse': 831703157,
-    'premera': 831703157,
-    'microsoft': 831703157
+    'microsoft': '081466849',
+    'costco': '103391843',
+    'nordstrom': '007942915',
+    'pse': '831703157',
+    'rei': '009483355',
+    'sunguard': '783824670',
+	'starbucks': '155366107',
+    'intel': '047897855',
+    'disney': '932660376',
+    'mckesson': '177667227',
+    'nbcu': '057156663',
+	'gsk': '238980408',
+    'providence': '884727413',
+    'expedia': '092180517',
+    't mobile': '327376653'
 };	
 	
 var registerIntentHandlers = function (intentHandlers) {
@@ -124,11 +133,18 @@ function handleDataTypeDialogRequest(intent, session, response) {
     var reqType = getRequestTypeFromIntent(intent);
     if (reqType.error) {
         // Invalid request type. Prompt for request type which will re-fire DialogGetDataIntent
-        speechOutput = "I'm sorry, I can\'t currently get " + reqType.displayDataType + " information. " + repromptText;
-		repromptText = "Please try again. Would you like inventory, sev ones, or service requests?"
+		var repromptText = " What would you like?"
+        speechOutput = "I can provide information on ";
+		if (session.attributes.customerInfo) {
+			speechOutput += session.attributes.customerInfo.customerName;
+		}
+		speechOutput += " inventory, sev ones, or service requests." + repromptText;
+
         response.ask(speechOutput, repromptText);
         return;
     }
+	
+	session.attributes.dataType = reqType; // not needed immediately, but set this so we have access to user's request type later
 
     // if we don't have a customer name yet, go get it. If we have a customer name/gdun, perform the final request
     if (session.attributes.customerInfo) {
@@ -192,8 +208,13 @@ function handleOneshotDataRequest(intent, session, response) {
     if (reqType.error) {
         // Invalid request type. Set customer in session and prompt for request type which will fire DialogGetDataIntent
         session.attributes.customerInfo = customerInfo;
-		repromptText = "Please try again. Would you like inventory, sev ones, or service requests?";
-        speechOutput = "I'm sorry, I can\'t currently get " + reqType.displayDataType + " information. " + repromptText;		
+		repromptText = " What would you like?";	
+        speechOutput = "I can provide information on ";
+		if (session.attributes.customerInfo) {
+			speechOutput += session.attributes.customerInfo.customerName;
+		}	
+		speechOutput += " inventory, sev ones, or service requests." + repromptText;
+	
         response.ask(speechOutput, repromptText);
         return;
     }
@@ -372,8 +393,6 @@ function askSpeech(textToSay, repromptTextToSay, response) {
     };
 	response.ask(speechOutput, repromptOutput);	
 };
-
-
 
 function countSystems(intent, session, response) {
 	console.log('entering countSystems function');

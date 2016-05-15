@@ -15,9 +15,21 @@ var SQSHelper = (function () {
 			};
 			
 			sqs.deleteMessage(params, function(err, data) {
-			  if (err) console.log(err, err.stack); // an error occurred
-			  else     console.log(data);           // successful response
-			  callback();
+				if (err) { // an error occurred
+					var result = {
+						error: true,
+						data: err
+					};					
+					console.log(err, err.stack);   
+				} else { // successful response
+					var result = {
+						error: false,
+						data: data
+					};						
+					console.log(data);           
+				}    
+				// send the callback to the calling function in intentHandlers							
+				callback(result);			  
 			});					
         }	
     };		
