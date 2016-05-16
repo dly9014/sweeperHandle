@@ -1,3 +1,4 @@
 To Do:
 
 Handle error where message comes back as: 404 Not Found: Requested route ('pnwreport.bellevuelab.isus.emc.com') does not exist.
+CJS Note: This is currently a result of our continuous deployment. JP is working on using Github webhooks to trigger a cf push only when there is a commit pushed to github. Currently Jenkins deploys every 15 minutes. Also exploring automation of Blue/Green deployment to avoid outages during a cf push.
