@@ -13,6 +13,7 @@ var CUSTOMERS = {
     'costco': '103391843',
     'nordstrom': '007942915',
     'pse': '831703157',
+	'puget sound energy': '831703157',
     'rei': '009483355',
     'sunguard': '783824670',
 	'starbucks': '155366107',
