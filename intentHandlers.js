@@ -4,7 +4,7 @@
 var	AlexaSkill = require('./AlexaSkill'),
 	getDataFromSweeper = require('./getDataFromSweeper'),
 	textHelper = require('./textHelper'),
-	//SQSHelper = require('./SQSHelper'),
+	SQSHelper = require('./SQSHelper'),
 	speechText = '';
 
 // customer to gdun mapping:
@@ -436,17 +436,21 @@ function countSystems(intent, session, response) {
 
 			var repromptText = 'You can say things like: Get inventory information for Starbucks, or, tell me about any sev ones for Microsoft.';
 
-			// needs to get done, doesn't work yet - delete message with JSON	
-			//			SQSHelper.deleteMessage(result.MsgReceiptHandle, function () {
-			//				console.log('message delete routine complete');
-			//			});	
-			
-			// reset requestInFlight so the next request will generate a message to Sweeper
-			session.attributes.requestInFlight = false;
-
-			// provide requested information to the user
-			askSpeech(speechText, repromptText, response);
-			
+			// perform various cleanup tasks
+			SQSHelper.deleteMessage(session.attributes.MsgReceiptHandle, function (result) {
+				if (result.error == true) {
+					console.log('error deleting message, completedSweeperJobs queue not empty');
+				} else {
+					// reset requestInFlight so the next request will generate a message to Sweeper
+					session.attributes.requestInFlight = false;
+					session.attributes.waitMode = null;
+					session.attributes.customerInfo = null;
+					session.attributes.dataType = null;
+					session.attributes.MsgReceiptHandle = null;
+					// provide requested information to the user
+					askSpeech(speechText, repromptText, response);
+				}					
+			});		
 		};		
 	});	
 

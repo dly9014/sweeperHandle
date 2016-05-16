@@ -20,13 +20,13 @@ var SQSHelper = (function () {
 						error: true,
 						data: err
 					};					
-					console.log(err, err.stack);   
+					console.log('error in sqs.deleteMessage: ' + err, err.stack);   
 				} else { // successful response
 					var result = {
 						error: false,
 						data: data
 					};						
-					console.log(data);           
+					console.log('successfully deleted message: ' + JSON.stringify(data));           
 				}    
 				// send the callback to the calling function in intentHandlers							
 				callback(result);			  
