@@ -1,0 +1,27 @@
+CUSTOMER: 
+microsoft
+costco
+nordstrom
+p.s.e.
+puget sound energy
+r.e.i.
+sunguard
+starbucks
+intel
+disney
+mckesson
+n.b.c.u
+g.s.k.
+providence
+expedia
+t-mobile
+
+DATATYPE:
+inventory
+sev ones
+service requests
+
+SYSTEM:
+sims
+data domains
+connectrix

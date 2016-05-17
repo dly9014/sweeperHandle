@@ -1,0 +1,127 @@
+HelloIntent say hello
+HelloIntent say hello world
+HelloIntent hello
+HelloIntent say hi
+HelloIntent say hi world
+HelloIntent hi
+HelloIntent how are you
+
+OneShotGetDataIntent get data
+OneShotGetDataIntent get some data
+OneShotGetDataIntent get information
+OneShotGetDataIntent get some information
+OneShotGetDataIntent get me data
+OneShotGetDataIntent get me some data
+OneShotGetDataIntent get me information
+OneShotGetDataIntent get me some information
+OneShotGetDataIntent tell me data
+OneShotGetDataIntent tell me some data
+OneShotGetDataIntent tell me information
+OneShotGetDataIntent tell me some information
+OneShotGetDataIntent give me data
+OneShotGetDataIntent give me some data
+OneShotGetDataIntent give me information
+OneShotGetDataIntent give me some information
+OneShotGetDataIntent get {DataType} for {Customer}
+OneShotGetDataIntent get {DataType} information for {Customer}
+OneShotGetDataIntent get {DataType} data for {Customer}
+OneShotGetDataIntent get {Customer} {DataType}
+OneShotGetDataIntent get {Customer} {DataType} information
+OneShotGetDataIntent get {Customer} {DataType} data
+OneShotGetDataIntent get any {Customer} {DataType} data
+OneShotGetDataIntent tell me {DataType} for {Customer}
+OneShotGetDataIntent tell me {DataType} information for {Customer}
+OneShotGetDataIntent tell me {DataType} data for {Customer}
+OneShotGetDataIntent tell me {Customer} {DataType}
+OneShotGetDataIntent tell me {Customer} {DataType} information
+OneShotGetDataIntent tell me {Customer} {DataType} data
+OneShotGetDataIntent tell me any {DataType} for {Customer}
+OneShotGetDataIntent tell me about {DataType} for {Customer}
+OneShotGetDataIntent tell me about {DataType} information for {Customer}
+OneShotGetDataIntent tell me about {DataType} data for {Customer}
+OneShotGetDataIntent tell me about {Customer} {DataType}
+OneShotGetDataIntent tell me about {Customer} {DataType} information
+OneShotGetDataIntent tell me about {Customer} {DataType} data
+OneShotGetDataIntent tell me about any {DataType} for {Customer}
+OneShotGetDataIntent give me {DataType} for {Customer}
+OneShotGetDataIntent give me {DataType} information for {Customer}
+OneShotGetDataIntent give me {DataType} data for {Customer}
+OneShotGetDataIntent give me {Customer} {DataType}
+OneShotGetDataIntent give me {Customer} {DataType} information
+OneShotGetDataIntent give me {Customer} {DataType} data
+OneShotGetDataIntent give me any {Customer} {DataType} data
+OneShotGetDataIntent get me {DataType} for {Customer}
+OneShotGetDataIntent get me {DataType} information for {Customer}
+OneShotGetDataIntent get me {DataType} data for {Customer}
+OneShotGetDataIntent get me {Customer} {DataType}
+OneShotGetDataIntent get me {Customer} {DataType} information
+OneShotGetDataIntent get me {Customer} {DataType} data
+OneShotGetDataIntent get me any {Customer} {DataType} data
+OneShotGetDataIntent get {DataType}
+OneShotGetDataIntent get {DataType} information
+OneShotGetDataIntent get {DataType} data
+OneShotGetDataIntent tell me {DataType}
+OneShotGetDataIntent tell me {DataType} information
+OneShotGetDataIntent tell me {DataType} data
+OneShotGetDataIntent tell me about {DataType}
+OneShotGetDataIntent tell me about {DataType} information
+OneShotGetDataIntent tell me about {DataType} data
+OneShotGetDataIntent give me {DataType}
+OneShotGetDataIntent give me {DataType} information
+OneShotGetDataIntent give me {DataType} data
+OneShotGetDataIntent get me {DataType}
+OneShotGetDataIntent get me {DataType} information
+OneShotGetDataIntent get me {DataType} data
+OneShotGetDataIntent get {Customer}
+OneShotGetDataIntent get {Customer} information
+OneShotGetDataIntent get {Customer} data
+OneShotGetDataIntent get any {Customer} data
+OneShotGetDataIntent get any {Customer} information
+OneShotGetDataIntent tell me {Customer}
+OneShotGetDataIntent tell me {Customer} information
+OneShotGetDataIntent tell me {Customer} data
+OneShotGetDataIntent tell me any {Customer} data
+OneShotGetDataIntent tell me any {Customer} information
+OneShotGetDataIntent tell me about {Customer}
+OneShotGetDataIntent tell me about {Customer} information
+OneShotGetDataIntent tell me about {Customer} data
+OneShotGetDataIntent tell me about any {Customer} data
+OneShotGetDataIntent tell me about any {Customer} information
+OneShotGetDataIntent give me {Customer}
+OneShotGetDataIntent give me {Customer} information
+OneShotGetDataIntent give me {Customer} data
+OneShotGetDataIntent give me any {Customer} data
+OneShotGetDataIntent give me any {Customer} information
+OneShotGetDataIntent get me {Customer}
+OneShotGetDataIntent get me {Customer} information
+OneShotGetDataIntent get me {Customer} data
+OneShotGetDataIntent get me any {Customer} data
+OneShotGetDataIntent get me any {Customer} information
+
+
+DialogGetDataIntent {Customer}
+DialogGetDataIntent {DataType}
+
+CountSystemsIntent {System}
+
+SupportedCustomersIntent what customers
+SupportedCustomersIntent what customers are supported
+SupportedCustomersIntent what customers do you know
+SupportedCustomersIntent what customers do you have information about
+SupportedCustomersIntent what customers can I ask for
+SupportedCustomersIntent what customers can you tell me about
+SupportedCustomersIntent what customers can you provide information about
+SupportedCustomersIntent what customers can I ask about
+SupportedCustomersIntent which customers
+SupportedCustomersIntent which customers are supported
+SupportedCustomersIntent which customers do you know
+SupportedCustomersIntent which customers do you have information about
+SupportedCustomersIntent which customers can I ask for
+SupportedCustomersIntent which customers can I ask about
+SupportedCustomersIntent which customers can you tell me about
+SupportedCustomersIntent which customers can you provide information about
+
+
+
+
+

@@ -12,19 +12,19 @@ var CUSTOMERS = {
     'microsoft': '081466849',
     'costco': '103391843',
     'nordstrom': '007942915',
-    'pse': '831703157',
+    'p.s.e.': '831703157',
 	'puget sound energy': '831703157',
-    'rei': '009483355',
+    'r.e.i.': '009483355',
     'sunguard': '783824670',
 	'starbucks': '155366107',
     'intel': '047897855',
     'disney': '932660376',
     'mckesson': '177667227',
-    'nbcu': '057156663',
-	'gsk': '238980408',
+    'n.b.c.u': '057156663',
+	'g.s.k.': '238980408',
     'providence': '884727413',
     'expedia': '092180517',
-    't mobile': '327376653'
+    't-mobile': '327376653'
 };	
 	
 var registerIntentHandlers = function (intentHandlers) {

@@ -1,0 +1,60 @@
+{
+  "intents": [
+    {
+      "intent": "HelloIntent"
+    },
+    {
+      "intent": "OneShotGetDataIntent",        
+      "slots": [
+        {
+          "name": "Customer",
+          "type": "CUSTOMER"
+        },
+        {
+          "name": "DataType",
+          "type": "DATATYPE"
+        }        
+      ]
+    }, 
+    {
+      "intent": "DialogGetDataIntent",        
+      "slots": [
+        {
+          "name": "Customer",
+          "type": "CUSTOMER"
+        },
+        {
+          "name": "DataType",
+          "type": "DATATYPE"
+        }        
+      ]
+    },   
+    {
+      "intent": "CountSystemsIntent",        
+      "slots": [
+        {
+          "name": "System",
+          "type": "SYSTEM"
+        }       
+      ]
+    },    
+    {
+      "intent": "SupportedCustomersIntent"
+    }, 
+    {
+      "intent": "AMAZON.YesIntent"
+    },
+    {
+      "intent": "AMAZON.NoIntent"
+    },         
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    }    
+  ]
+}
